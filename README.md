@@ -1,233 +1,122 @@
-# Student Performance Analysis using Python & Pandas
+# Student Performance Analysis — Python & Pandas
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
-![NumPy](https://img.shields.io/badge/NumPy-Data%20Analysis-orange?logo=numpy)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
+![NumPy](https://img.shields.io/badge/NumPy-Analysis-orange?logo=numpy)
+![Pandas](https://img.shields.io/badge/Pandas-Analysis-150458?logo=pandas)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter)
+
+> A practical Pandas project analyzing **1,000,000 student records** to explore academic performance, study behavior, attendance, participation, and derived performance metrics.
 
 ## Overview
 
-This project explores **student academic performance** using Python, NumPy, and Pandas.
+This project uses Python, NumPy, and Pandas to answer practical questions about student performance while demonstrating core data-analysis techniques on a large tabular dataset.
 
-The analysis works with a large student dataset containing **1,000,000 records and 6 core variables**, covering:
+### Business-style questions
 
-* Weekly self-study hours
-* Attendance percentage
-* Class participation
-* Total score
-* Grade
-* Student ID
-
-The objective is to practice data analysis techniques on a realistic education-focused dataset while answering practical questions about student study patterns and academic performance.
-
----
-
-## Project Objectives
-
-The project focuses on understanding student performance through questions such as:
-
-* How large is the dataset?
-* Which student studies the most each week?
-* Which students have the highest attendance?
-* Which students have the highest class participation?
-* Which students achieve the highest total scores?
-* How many students scored exactly 100?
-* How can students be classified based on their performance?
-* How can study efficiency be measured?
-* How can students be grouped according to weekly study hours?
-
----
+- Which students study the most?
+- Which students have the highest attendance and participation?
+- How many students achieved a perfect score?
+- How can students be classified by performance?
+- How can study intensity and study efficiency be measured?
 
 ## Dataset
 
-The dataset contains **1,000,000 student records** and the following six original columns:
+The dataset contains **1,000,000 rows and 6 original columns**:
 
-| Column                    | Description                        |
-| ------------------------- | ---------------------------------- |
-| `student_id`              | Unique student identifier          |
-| `weekly_self_study_hours` | Hours spent on self-study per week |
-| `attendance_percentage`   | Student attendance percentage      |
-| `class_participation`     | Class participation score          |
-| `total_score`             | Overall student score              |
-| `grade`                   | Assigned academic grade            |
+| Column | Description |
+|---|---|
+| `student_id` | Unique student identifier |
+| `weekly_self_study_hours` | Weekly self-study hours |
+| `attendance_percentage` | Attendance percentage |
+| `class_participation` | Participation score |
+| `total_score` | Overall score |
+| `grade` | Academic grade |
 
-## The notebook later creates additional analytical columns such as `ScoringLevel`, `efficiency`, and `Category`.
+## Analysis Workflow
 
-## Tools & Technologies
+**Load → Inspect → Filter → Sort → Transform → Derive Metrics → Categorize → Interpret**
 
-| Tool                 | Purpose                          |
-| -------------------- | -------------------------------- |
-| **Python**           | Programming and data analysis    |
-| **NumPy**            | Numerical operations             |
-| **Pandas**           | Data manipulation and analysis   |
-| **Jupyter Notebook** | Interactive analysis environment |
+### Core analysis
 
----
+- Dataset shape and structure
+- Maximum study hours
+- Highest attendance
+- Highest participation
+- Maximum total score
+- Students scoring exactly 100
+- Ranking and Boolean filtering
 
-# Analysis Workflow
+### Derived features
 
-## 1. Data Loading
+**ScoringLevel**
+- High: score ≥ 90
+- Medium: 70–89
+- Low: 50–69
 
-The dataset is imported into Pandas using:
+**Study Efficiency**
 
-```python
-df = pd.read_csv('student_performance.csv')
-```
+`Study Efficiency = Total Score / Weekly Self-Study Hours`
 
-NumPy and Pandas are used as the main analytical libraries.
+**Study Category**
+- Light: < 10 hours
+- Moderate: 10–20 hours
+- Heavy: > 20 hours
 
----
+## Key Results
 
-## 2. Dataset Exploration
+- Maximum observed self-study time: **40 hours/week**
+- Students at that maximum: **166**
+- Maximum attendance: **100%**
+- Maximum participation: **10.0**
+- Maximum total score: **100**
+- Students scoring 100: **268,121**
 
-The project begins with basic dataset exploration, including:
+These results describe this dataset and should not be interpreted as general conclusions about student performance.
 
-* Dataset dimensions
-* First 10 records
-* Last 10 records
-* Column names
-* Basic student-level inspection
+## Pandas Concepts Demonstrated
 
-The dataset contains exactly **1,000,000 rows and 6 columns**.
+- `read_csv()`
+- `shape`
+- `head()` / `tail()`
+- `columns`
+- `max()`
+- Boolean filtering
+- `sort_values()`
+- Column creation
+- Custom functions
+- `apply()`
+- Conditional classification
+- DataFrame column arithmetic
 
----
-
-# Student Performance Analysis
-
-## Weekly Self-Study
-
-The project identifies the maximum weekly self-study time and students achieving that value.
-
-The maximum observed self-study time is **40 hours per week**, with **166 students** reaching that value in the analysis.
-A ranking of students by weekly study hours is also created using Pandas sorting.
-
----
-
-## Attendance Analysis
-
-The notebook identifies students with the maximum attendance percentage.
-
-The highest attendance value observed is **100%**, and the analysis returns all students achieving that maximum.
-
-This demonstrates how filtering can be used to find all records matching an extreme value rather than returning only one student.
-
----
-
-## Class Participation
-
-The project also investigates the highest class participation score.
-
-The maximum participation value is **10.0**, and the notebook filters all students who achieve that score.
-This shows practical use of:
-
-```python
-max()
-```
-
-and Boolean filtering in Pandas.
-
----
-
-## Total Score Analysis
-
-Students are analyzed according to their total academic score.
-
-The maximum total score is **100.0**, and the notebook identifies all students who achieved that score.
-The analysis also calculates how many students scored exactly 100.
-
-### Students scoring 100: **268,121**
-
----
-
-# Derived Features
-
-## Scoring Level
-
-A new `ScoringLevel` column is created using custom conditional logic.
-
-The defined categories are:
-
-* **High:** Total score ≥ 90
-* **Medium:** 70 ≤ Total score < 90
-* **Low:** 50 ≤ Total score < 70
-
-The classification is implemented through a Python function and Pandas `apply()`.
-
----
-
-## Study Efficiency
-
-The notebook creates a new metric:
+## Project Structure
 
 ```text
-Study Efficiency = Total Score / Weekly Self-Study Hours
+Students-Performance-Pandas/
+├── README.md
+├── student_performance.csv
+└── *.ipynb
 ```
 
-This is implemented using direct Pandas column arithmetic.
+## How to Run
 
-The metric provides a way to compare academic score relative to the amount of weekly self-study recorded.
-
----
-
-## Study Category
-
-Students are grouped into three study-intensity categories based on weekly self-study hours:
-
-| Category     | Weekly Study Hours |
-| ------------ | -----------------: |
-| **Light**    |               < 10 |
-| **Moderate** |              10–20 |
-| **Heavy**    |               > 20 |
-
-This classification is implemented using a custom function and `apply()`.
-
----
-
-# Key Analytical Takeaways
-
-### 1. Large-Scale Dataset
-
-The project demonstrates Pandas analysis on a dataset containing **one million student records**, making it useful practice for working with larger-than-usual tabular datasets.
-
-### 2. Study Time Can Be Analyzed at Individual Level
-
-Students can be ranked and filtered based on weekly self-study hours, with 40 hours being the maximum observed value.
-
-### 3. Attendance Can Be Used as a Performance Attribute
-
-The notebook identifies all students reaching the highest observed attendance level of 100%.
-
-### 4. Maximum Scores Are Common in This Dataset
-
-A substantial number of records have a total score of exactly 100, with **268,121 students** meeting that condition.
-
-### 5. Derived Metrics Add Analytical Depth
-
-## Creating `Study Efficiency`, `ScoringLevel`, and `Category` moves the analysis beyond simply inspecting the raw columns.
-
-# Pandas Concepts Demonstrated
-
-This project provides hands-on practice with:
-
-* `read_csv()`
-* `shape`
-* `head()`
-* `tail()`
-* `columns`
-* `max()`
-* Boolean filtering
-* `sort_values()`
-* Column creation
-* Custom functions
-* `apply()`
-* Conditional classification
-* Arithmetic between DataFrame columns
-
----
-
-# Project Structure
-
-```text
-Student-Per
+```bash
+pip install pandas numpy jupyter
+jupyter notebook
 ```
 
+Open the project notebook and run the cells sequentially.
+
+## Skills Demonstrated
+
+**Python • NumPy • Pandas • Data Manipulation • Feature Engineering • Exploratory Analysis • Jupyter**
+
+---
+
+### Author
+
+**Uday Dubey**  
+BBA Student | Aspiring Data Analyst
+
+[GitHub](https://github.com/udayydubey)
+
+⭐ If you found the project useful, feel free to star the repository.
